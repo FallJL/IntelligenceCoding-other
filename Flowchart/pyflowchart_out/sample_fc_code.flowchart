@@ -1,0 +1,82 @@
+op2=>operation: import queue
+op4=>operation: N = 105
+op6=>operation: M = 5005
+op8=>operation: INF = (2 ** 30)
+op10=>operation: class edge():
+
+    def __init__(self, to, nxt, w):
+        self.to = to
+        self.nxt = nxt
+        self.w = w
+op12=>operation: a = []
+op14=>operation: head = [(- 1) for i in range(N)]
+op16=>operation: cnt = 0
+op18=>operation: cur = [(- 1) for i in range(N)]
+op20=>operation: dep = [0 for i in range(N)]
+st23=>start: start link
+io25=>inputoutput: input: u, v, w
+op28=>operation: global a, head, cnt
+sub30=>subroutine: a.append(edge(v, head[u], w))
+op32=>operation: head[u] = cnt
+op34=>operation: cnt += 1
+sub36=>subroutine: a.append(edge(u, head[v], 0))
+op38=>operation: head[v] = cnt
+op40=>operation: cnt += 1
+e42=>end: end link
+st46=>start: start bfs
+io48=>inputoutput: input: 
+op51=>operation: global dep
+op53=>operation: q = queue.Queue()
+cond56=>operation: dep[i] = 0 while  i in range(n)
+op68=>operation: dep[s] = 1
+sub70=>subroutine: q.put(s)
+cond73=>condition: while (not q.empty())
+op118=>operation: u = q.get()
+op120=>operation: e = head[u]
+cond123=>condition: while (e != (- 1))
+cond143=>condition: if ((a[e].w != 0) and (dep[a[e].to] == 0))
+op147=>operation: dep[a[e].to] = (dep[u] + 1)
+sub149=>subroutine: q.put(a[e].to)
+op154=>operation: e = a[e].nxt
+io163=>inputoutput: output:  (dep[t] != 0)
+e161=>end: end function return
+
+op2->op4
+op4->op6
+op6->op8
+op8->op10
+op10->op12
+op12->op14
+op14->op16
+op16->op18
+op18->op20
+op20->st23
+st23->io25
+io25->op28
+op28->sub30
+sub30->op32
+op32->op34
+op34->sub36
+sub36->op38
+op38->op40
+op40->e42
+e42->st46
+st46->io48
+io48->op51
+op51->op53
+op53->cond56
+cond56->op68
+op68->sub70
+sub70->cond73
+cond73(yes)->op118
+op118->op120
+op120->cond123
+cond123(yes)->cond143
+cond143(yes)->op147
+op147->sub149
+sub149->op154
+op154(left)->cond123
+cond143(no)->op154
+cond123(no)->cond73
+cond73(no)->io163
+io163->e161
